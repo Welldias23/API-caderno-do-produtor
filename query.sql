@@ -2,7 +2,9 @@ create database cadernoDoProdutor;
 
 create table produtor (
   id serial primary key,
-  nome_produtor varchar(30) not null,
+  nome varchar(30) not null,
+  sobrenome varchar(30) not null,
+  cpf varchar(11) not null,
   email text not null unique,
   senha text not null
 );
