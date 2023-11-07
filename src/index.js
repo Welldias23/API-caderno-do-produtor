@@ -1,6 +1,6 @@
 require('dotenv').config()
 const express = require('express')
-const rotas = require('./routes/rotas')
+const rotas = require('./routes/produtor')
 
 const PORTA = process.env.PORT || 3000
 
