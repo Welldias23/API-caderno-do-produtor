@@ -49,7 +49,9 @@ const logarProdutor = async(req, res) => {
     }
     
     delete produtor.senha
-    const token = gerarToken(produtor, "1")
+    
+    const token = gerarToken(produtor, "1h")
+
 
     return res.status(200).json({produtor, token})
     
@@ -59,7 +61,13 @@ const logarProdutor = async(req, res) => {
 
 }
 
+const detalharProdutor = (req, res) => {
+  const produtor = req.produtor
+  return res.status(200).json(produtor)
+}
+
 module.exports = {
   cadastrarProdutor,
-  logarProdutor
+  logarProdutor, 
+  detalharProdutor
 }
