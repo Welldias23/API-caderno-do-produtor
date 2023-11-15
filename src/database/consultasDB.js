@@ -1,13 +1,13 @@
 const knex = require("./conexao")
 
-const cadastroDB = (tabela, campo) => {
-    const dadosCadastrados = knex(tabela).insert(campo).returning()
+const cadastroDB = (tabela, dados) => {
+    const dadosCadastrados = knex(tabela).insert(dados).returning("*")
     return dadosCadastrados
 
 }
 
-const consultaDB = (tabela, campo) => {
-    const dadosEncotrados = knex(tabela).where(campo).first()
+const consultaDB = (tabela, coluna) => {
+    const dadosEncotrados = knex(tabela).where(coluna).first()
     return dadosEncotrados
 
 }

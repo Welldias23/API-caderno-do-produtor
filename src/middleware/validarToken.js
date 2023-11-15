@@ -10,10 +10,15 @@ const validarToken = (req, res, next) => {
     try {
         const token = authorization.split(" ")[1]
         const produtor = verificarToken(token)
-        console.log(produtor);
         req.produtor = produtor
         next()
     } catch (error) {
+        if (error.name === 'TokenExpiredError') {
+            return res.status(401).json({mensagem: "O produtor não esta logado."})
+        }
+        if (error.name === 'JsonWebTokenError') {
+            return res.status(401).json({mensagem: "O produtor não esta logado."})
+        }
         return  res.status(500).json({ mensagem: "Erro interno do servidor." })
     }
 }

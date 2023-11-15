@@ -25,6 +25,8 @@ const cadastrarProdutor = async(req, res) => {
   const produtor = {nome, sobrenome, cpf, email, senha: senhaCritografada}
 
   const produtorCadastrado = await cadastroDB("produtor", produtor)
+  delete produtorCadastrado.senha
+  
   return res.status(201).json(produtorCadastrado)
 
  } catch (error) {

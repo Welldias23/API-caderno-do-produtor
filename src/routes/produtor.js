@@ -1,7 +1,7 @@
 const { Router } = require('express')
 const { cadastrarProdutor, logarProdutor, detalharProdutor } = require('../controllers/produtor')
 const { schemasProdutor } = require('../validacoes/schemasProdutor')
-const { validarCorpo } = require('../middleware/produtor')
+const { validarCorpo } = require('../middleware/validarCorpo')
 const { schemasLoginProdutor } = require('../validacoes/schemasLoginProdutor')
 const validarToken = require('../middleware/validarToken')
 
