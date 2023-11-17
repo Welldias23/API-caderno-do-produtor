@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const { cadastrarProdutor, logarProdutor, detalharProdutor } = require('../controllers/produtor')
+const { cadastrarProdutor, logarProdutor, detalharProdutor, atualizarProdutor, excluirProdutor } = require('../controllers/produtor')
 const { schemasProdutor } = require('../validacoes/schemasProdutor')
 const { validarCorpo } = require('../middleware/validarCorpo')
 const { schemasLoginProdutor } = require('../validacoes/schemasLoginProdutor')
@@ -13,5 +13,7 @@ rotas.post('/login', validarCorpo(schemasLoginProdutor), logarProdutor)
 rotas.use(validarToken)
 
 rotas.get("/produtor", detalharProdutor)
+rotas.put("/produtor", validarCorpo(schemasProdutor), atualizarProdutor)
+rotas.delete("/produtor", excluirProdutor)
 
 module.exports = rotas

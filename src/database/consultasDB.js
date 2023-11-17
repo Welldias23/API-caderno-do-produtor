@@ -1,18 +1,30 @@
 const knex = require("./conexao")
 
-const cadastroDB = (tabela, dados) => {
+const cadastrarDados = (tabela, dados) => {
     const dadosCadastrados = knex(tabela).insert(dados).returning("*")
     return dadosCadastrados
 
 }
 
-const consultaDB = (tabela, coluna) => {
+const consultarDados = (tabela, coluna) => {
     const dadosEncotrados = knex(tabela).where(coluna).first()
     return dadosEncotrados
 
 }
 
+const atualizarDados = (tabela, coluna, dados) => {
+    const dadosAtualizados = knex(tabela).where(coluna).update(dados)
+    return dadosAtualizados
+}
+
+const excluirDados = (tabela, coluna) => {
+    const dadosExcluidos = knex(tabela).where(coluna).del().returning("*")
+    return dadosExcluidos
+}
+
 module.exports = {
-    cadastroDB,
-    consultaDB
+    cadastrarDados,
+    consultarDados,
+    atualizarDados,
+    excluirDados
 }

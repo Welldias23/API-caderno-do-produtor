@@ -66,36 +66,88 @@ Nessa API é possivel cadastrar, atualizar e excluir dados como, dados de Contro
 
 ## EndPoints
 
-### Produtor
+### cadastro do Produtor
 
-- cadastro
-- atualizacão
-- exclusão
+#### `post` `/produtor`
 
-### Propriedade
+- **Requisição**  
+  Sem parâmetros de rota ou de query.  
+  O corpo (body) deverá possuir um objeto com as seguintes propriedades (respeitando estes nomes):
 
-### Controle pluviométrico
+  - nome
+  - sobrenome
+  - cpf
+  - email
+  - senha
 
-### Controle leiteiro
+- **Resposta**  
+  Em caso de **sucesso**, você recebera o corpo (body) da resposta com o conteúdo do usuário cadastrado, incluindo seu respectivo `id` e excluindo a senha criptografada.
+  Em caso de **falha no cadastro**, Você recebera um **_status code_** apropriado, e em seu corpo (body) ira possuir um objeto com uma propriedade **mensagem** que vai possuir como valor um texto explicando o motivo da falha.
 
-### Controle de nascimentos
+- **REQUISITOS OBRIGATÓRIOS**
+  - Campos obrigatórios:
+    - nome
+    - sobrenome
+    - cpf
+    - email
+    - senha
+  - O e-mail informado deve ser único
+  - O cpf informado deve ser único
+  - a senha deve ter no minimo 6 caracteres
 
-### Controle reprodutivo
+### Atualizar cadastro do Produtor
 
-### Controle de secagens
+#### `put` `/produtor`
 
-### Controle rerodutivo - novilhas
+- **Requisição**  
+  Devera seguir o mesmo padrão da rota de cadastro do produtor
 
-### Controle de pesagens
+- **Resposta**  
+  Em caso de **sucesso**, você não recebera um corpo (body) somente o **_status code_** 204.
+  Em caso de **falha no atualizar cadastro**, Você recebera um **_status code_** apropriado, e em seu corpo (body) ira possuir um objeto com uma propriedade **mensagem** que vai possuir como valor um texto explicando o motivo da falha.
 
-### Controle de ocorrências
+- **REQUISITOS OBRIGATÓRIOS**
+  - Devera seguir os mesmos requisitos obrigatorio da rota de cadastro do produtor
 
-### Controle do rebanho
+### Excluir cadastro do Produtor
 
-### Controle de despesas
+#### `delete` `/produtor`
 
-### Controle de receitas
+- **Requisição**
+  Sem parâmetros de rota ou de query  
+  Não devera possuir corpo (body)
 
-### Recomendacões
+- **Resposta**  
+  Em caso de **sucesso**,você recebera o corpo (body) da resposta com uma mensagem contendo o nome e sobrenome do produtor excluido dizendo que o cadastro foi excluido.
+  Em caso de **falha no atualizar cadastro**, Você recebera um **_status code_** apropriado, e em seu corpo (body) ira possuir um objeto com uma propriedade **mensagem** que vai possuir como valor um texto explicando o motivo da falha.
 
-### Índices técnicos e econômicos
+- **REQUISITOS OBRIGATÓRIOS**
+  - O produtor devera está logado
+
+Propriedade
+
+Controle pluviométrico
+
+Controle leiteiro
+
+Controle de nascimentos
+
+Controle reprodutivo
+
+Controle de secagens
+
+Controle rerodutivo - novilhas
+
+Controle de pesagens
+
+Controle de ocorrências
+
+Controle do rebanho
+
+Controle de despesas
+
+Controle de receitas
+
+Recomendacões
+
+Índices técnicos e econômicos
