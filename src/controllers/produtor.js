@@ -71,6 +71,9 @@ const detalharProdutor = async (req, res) => {
       return res.status(404).json({mensagem: "Produtor não encontrado."})
     }
 
+    //const propriedade = await consultarDados("propriedade", {id_produtor: id})
+    delete produtor.senha
+
     return res.status(200).json(produtor)
   } catch (error) {
     return  res.status(500).json({ mensagem: "Erro interno do servidor." })

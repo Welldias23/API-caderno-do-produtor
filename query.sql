@@ -12,7 +12,9 @@ create table produtor (
 create table propriedade (
   id serial primary key,
   id_produtor integer references produtor(id) not null,
-  nome_propriedade varchar(30) not null
+  nome_propriedade varchar(30) not null,
+  area_da_atividade float(2) not null,
+  area_produtiva float(2) not null
 );
 
 create table controlePluvimetrico (
