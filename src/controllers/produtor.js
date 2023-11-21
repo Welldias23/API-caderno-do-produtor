@@ -1,7 +1,7 @@
 const { criptografarSenha, compararSenha } = require("../core/criptografia")
 const { gerarToken } = require("../core/jwt")
 const { validarCpf } = require("../core/validarCpf")
-const { consultarDados, cadastrarDados, atualizarDados, excluirDados } = require("../database/consultasDB")
+const { cadastrarDados, atualizarDados, excluirDados, consultarDadosUnicos } = require("../database/consultasDB")
 
 const cadastrarProdutor = async(req, res) => {
   const { nome, sobrenome, cpf, email, senha } = req.body
@@ -10,12 +10,12 @@ const cadastrarProdutor = async(req, res) => {
   if (!validacaoCpf) {
     return res.status(400).json({mensagem: "Cpf invalido"})
   }
-  const checarCpf = await consultarDados("produtor", {cpf})
+  const checarCpf = await consultarDadosUnicos("produtor", {cpf})
   
   if (checarCpf) {
    return res.status(404).json({mensagem: 'Esse cpf ja foi cadastrado.'})
   }
-  const checarEmail = await consultarDados("produtor", {email})
+  const checarEmail = await consultarDadosUnicos("produtor", {email})
   
   if (checarEmail) {
    return res.status(404).json({mensagem: 'Esse email ja foi cadastrado.'})
@@ -36,16 +36,16 @@ const cadastrarProdutor = async(req, res) => {
 
 const logarProdutor = async(req, res) => {
   const {email, senha} = req.body
-
-  try {
-    const produtor = await consultarDados("produtor", {email})
   
+  try {
+    const produtor = await consultarDadosUnicos("produtor", {email})
+
     if (!produtor) {
      return res.status(404).json({mensagem: 'Email ou senha invalidos.'})
     }
-
+    
     const checarSenha = await compararSenha(senha, produtor.senha) 
-
+    
     if (!checarSenha) {
       return res.status(404).json({mensagem: 'Email ou senha invalidos.'})
     }
@@ -57,6 +57,7 @@ const logarProdutor = async(req, res) => {
     return res.status(200).json({produtor, token})
     
   } catch (error) {
+    console.log(error);
     return  res.status(500).json({ mensagem: "Erro interno do servidor." })
   }
 
@@ -65,7 +66,7 @@ const logarProdutor = async(req, res) => {
 const detalharProdutor = async (req, res) => {
   const {id} = req.produtor
   try {
-    const produtor = await consultarDados("produtor", {id})
+    const produtor = await consultarDadosUnicos("produtor", {id})
 
     if (!produtor) {
       return res.status(404).json({mensagem: "Produtor não encontrado."})
@@ -85,7 +86,7 @@ const atualizarProdutor = async (req, res) => {
   const {id} = req.produtor
   const { nome, sobrenome, cpf, email, senha } = req.body
   try {
-    const produtor = await consultarDados("produtor", {id})
+    const produtor = await consultarDadosUnicos("produtor", {id})
 
     if (!produtor) {
       return res.status(404).json({mensagem: "Produtor não encontrado."})
@@ -97,12 +98,12 @@ const atualizarProdutor = async (req, res) => {
       return res.status(400).json({mensagem: "Cpf invalido"})
     }
 
-    const checarCpf = await consultarDados("produtor", {cpf})
+    const checarCpf = await consultarDadosUnicos("produtor", {cpf})
     
     if (checarCpf && checarCpf.id !== id) {
     return res.status(404).json({mensagem: 'Esse cpf ja foi cadastrado.'})
     }
-    const checarEmail = await consultarDados("produtor", {email})
+    const checarEmail = await consultarDadosUnicos("produtor", {email})
     
     if (checarEmail && checarEmail.id !== id) {
     return res.status(404).json({mensagem: 'Esse email ja foi cadastrado.'})
@@ -123,7 +124,7 @@ const atualizarProdutor = async (req, res) => {
 const excluirProdutor = async (req, res) => {
   const {id} = req.produtor
   try {
-    const produtorExcluido = await consultarDados("produtor", {id})
+    const produtorExcluido = await consultarDadosUnicos("produtor", {id})
 
     if (!produtorExcluido) {
       return res.status(404).json({mensagem: "Produtor não encontrado."})

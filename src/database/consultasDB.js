@@ -6,8 +6,14 @@ const cadastrarDados = (tabela, dados) => {
 
 }
 
-const consultarDados = (tabela, coluna) => {
+const consultarDadosUnicos = (tabela, coluna) => {
     const dadosEncotrados = knex(tabela).where(coluna).first()
+    return dadosEncotrados
+
+}
+
+const consultarDadosLista = (tabela, coluna) => {
+    const dadosEncotrados = knex(tabela).where(coluna)
     return dadosEncotrados
 
 }
@@ -24,7 +30,8 @@ const excluirDados = (tabela, coluna) => {
 
 module.exports = {
     cadastrarDados,
-    consultarDados,
+    consultarDadosUnicos,
+    consultarDadosLista,
     atualizarDados,
     excluirDados
 }
