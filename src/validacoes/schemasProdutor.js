@@ -25,5 +25,5 @@ const schemasProdutor = joi.object({
 })
 
 module.exports = {
-  schemasProdutor,
+  schemasProdutor
 }

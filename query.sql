@@ -17,20 +17,22 @@ create table propriedade (
   area_produtiva float(2) not null
 );
 
-create table controlePluvimetrico (
+create table controle_pluviometrico (
+  id serial primary key,
+  id_produtor integer references produtor(id) not null,
   id_propriedade integer references propriedade(id) not null,
-  data timestamp not null,
-  volumeDeChuva int not null
+  data_chuva date not null,
+  volume_de_chuva int not null
 );
 
-create table controleLeiteiro (
+create table controle_leiteiro (
   id_propriedade integer references propriedade(id) not null,
   data timestamp not null,
  	leite int not null
   );
 
 
-create table controleRebanho (
+create table controle_rebanho (
   id int not null unique,
   nome varchar(30),
   data timestamp not null,
@@ -40,25 +42,25 @@ create table controleRebanho (
   );
 
 
-create table controleDeNascimentos (
+create table controle_de_nascimentos (
   id int not null unique,
   nome varchar(30),
   data timestamp not null,
   sexo varchar(1) not null,
-  id_pai integer references controleRebanho(id) not null,
-  id_mae integer references controleRebanho(id) not null,
+  id_pai integer references controle_rebanho(id) not null,
+  id_mae integer references controle_rebanho(id) not null,
   peso int  not null,
   observacao text,
   id_propriedade integer references propriedade(id) not null
   );
 
 
-create table controleReprodutivo (
-  id_animal integer references controleRebanho(id) not null,
+create table controle_reprodutivo (
+  id_animal integer references controle_rebanho(id) not null,
   nome varchar(30),
   data_hora_do_cio timestamp not null,
   data_hora_da_inseminacao_monta timestamp not null,
-  id_touro integer references controleRebanho(id) not null,
+  id_touro integer references controle_rebanho(id) not null,
   inseminador varchar(30) not null,
   prenhe varchar(10),
   previsao_de_parto timestamp,
@@ -67,8 +69,8 @@ create table controleReprodutivo (
   );
 
 
-create table controleSecagens (
-  id_animal integer references controleRebanho(id) not null,
+create table controle_secagens (
+  id_animal integer references controle_rebanho(id) not null,
   nome varchar(30),
   previsao_de_parto timestamp not null,
   data_de_secagem timestamp not null,
@@ -77,12 +79,12 @@ create table controleSecagens (
   id_propriedade integer references propriedade(id) not null
   );
 
-  create table controleReprodutivoNuvilhas (
-  id_animal integer references controleRebanho(id) not null,
+  create table controle_reprodutivo_nuvilhas (
+  id_animal integer references controle_rebanho(id) not null,
   nome varchar(30),
   data_hora_do_cio timestamp not null,
   data_hora_da_inseminacao_monta timestamp not null,
-  id_touro integer references controleRebanho(id) not null,
+  id_touro integer references controle_rebanho(id) not null,
   inseminador varchar(30) not null,
   prenhe varchar(10),
   previsao_de_parto timestamp,
@@ -91,16 +93,16 @@ create table controleSecagens (
   );
 
 
-create table controlePesagens (
-  id_animal integer references controleRebanho(id) not null,
+create table controle_pesagens (
+  id_animal integer references controle_rebanho(id) not null,
   nome varchar(30),
   data_pesagem timestamp not null,
   id_propriedade integer references propriedade(id) not null
   );
 
 
-create table controleOcorrencias (
-  id_animal integer references controleRebanho(id) not null,
+create table controle_ocorrencias (
+  id_animal integer references controle_rebanho(id) not null,
   nome varchar(30),
   data timestamp not null,
   ocorrencia text not null,
@@ -110,7 +112,7 @@ create table controleOcorrencias (
   id_propriedade integer references propriedade(id) not null
   );
 
-  create table controleDespesas (
+  create table controle_despesas (
   id serial primary key,
   despesa varchar(30) not null,
   quantidade int not null,
@@ -122,7 +124,7 @@ create table controleOcorrencias (
   );
 
 
-  create table controleReceitas (
+  create table controle_receitas (
   id serial primary key,
   receita varchar(30) not null,
   quantidade int not null,

@@ -12,5 +12,5 @@ const schemasLoginProdutor = joi.object({
 })
 
 module.exports = {
-  schemasLoginProdutor,
+  schemasLoginProdutor
 }
