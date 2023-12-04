@@ -1,8 +1,13 @@
 const joi = require('joi')
 
 const schemasControlePluviometrico = joi.object({
-    id_propriedade: joi.number().integer().required().messages({
-    'any.required': 'O campo id_propriedade é obrigatorio.'
+  id_produtor: joi.number().integer().required().messages({
+    'any.required': 'O campo id_produtor é obrigatorio.',
+    'number.base': 'O campo id_produtor deve ser um número.'
+  }),
+  id_propriedade: joi.number().integer().required().messages({
+    'any.required': 'O campo id_propriedade é obrigatorio.',
+    'number.base': 'O campo id_propriedade deve ser um número.'
   }),
   data_chuva: joi.date().required().messages({
     'any.required': 'O campo data_chuva é obrigatorio.',

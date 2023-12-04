@@ -5,18 +5,15 @@ const cadastrarChuva = async (req, res) => {
   const {id_propriedade, data_chuva, volume_de_chuva} = req.body
   
    try {
-        const propriedade = await consultarDadosUnicos("propriedade", {id: id_propriedade})
+        const propriedade = await consultarDadosUnicos("propriedade", {id: id_propriedade, id_produtor})
         if (!propriedade) {
             return res.status(404).json({mensagem: "Propriedade não encontrada."})
         }
-        if (propriedade.id_produtor !== id_produtor) {
-            return res.status(404).json({mensagem: "Propriedade não encontrada."})
-        }
+        
         const chuva = {id_produtor, id_propriedade, data_chuva, volume_de_chuva}
         const chuvaCadastrada = await cadastrarDados("controle_pluviometrico", chuva)
         return res.status(201).json(chuvaCadastrada)
     } catch (error) {
-        console.log(error);
         return  res.status(500).json({ mensagem: "Erro interno do servidor." })
     }
 }

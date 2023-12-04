@@ -1,0 +1,32 @@
+const joi = require('joi')
+
+const schemasControleLeiteiro = joi.object({
+  id_propriedade: joi.number().integer().required().messages({
+    'any.required': 'O campo id_propriedade é obrigatorio.',
+    'number.base': 'O campo id_propriedade deve ser um número.'
+  }),
+  data: joi.date().required().messages({
+    'any.required': 'O campo data é obrigatorio.',
+    'date.base': 'Deve ser uma data valida.'
+  }),
+  industria: joi.number().required().messages({
+    'any.required': 'O campo litros_leite é obrigatorio.',
+    'number.base': 'O campo litros_leite percisa ser um número.',
+  }),
+  consumo_familiar: joi.number().required().messages({
+    'any.required': 'O campo litros_leite é obrigatorio.',
+    'number.base': 'O campo litros_leite percisa ser um número.',
+  }),
+  consumo_bezerros: joi.number().required().messages({
+    'any.required': 'O campo litros_leite é obrigatorio.',
+    'number.base': 'O campo litros_leite percisa ser um número.',
+  }),
+  descarte: joi.number().required().messages({
+    'any.required': 'O campo litros_leite é obrigatorio.',
+    'number.base': 'O campo litros_leite percisa ser um número.',
+  }),
+})
+
+module.exports = {
+  schemasControleLeiteiro
+}
