@@ -18,7 +18,7 @@ const cadastrarProducaoDia = async (req, res) => {
       } catch (error) {
           return  res.status(500).json({ mensagem: "Erro interno do servidor." })
       }
-  }
+}
 
 
   const atualizarProducaoDia = async (req, res) => {

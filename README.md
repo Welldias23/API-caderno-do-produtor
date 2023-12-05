@@ -124,11 +124,175 @@ Nessa API é possivel cadastrar, atualizar e excluir dados como, dados de Contro
 - **REQUISITOS OBRIGATÓRIOS**
   - O produtor devera está logado
 
-Propriedade
+### Cadastro de propriedade
 
-Controle pluviométrico
+#### `post` `/propriedade`
 
-Controle leiteiro
+- **Requisição**  
+  Sem parâmetros de rota ou de query.  
+  O corpo (body) deverá possuir um objeto com as seguintes propriedades (respeitando estes nomes):
+
+  - nome_propriedade
+  - area_da_atividade
+  - area_produtiva
+
+- **Resposta**  
+  Em caso de **sucesso**, você recebera o corpo (body) da resposta com o conteúdo da propriedade cadastrada, incluindo seu respectivo `id` e o id\*produtor do produtor logado.
+  Em caso de **falha no cadastro**, Você recebera um **_status code_** apropriado, e em seu corpo (body) ira possuir um objeto com uma propriedade **mensagem** que vai possuir como valor um texto explicando o motivo da falha.
+
+- **REQUISITOS OBRIGATÓRIOS**
+  - Campos obrigatórios:
+    - nome_propriedade
+    - area_da_atividade
+    - area_produtiva
+  - O produtor deve estar logado no seu cadastro.
+
+### Atualizar cadastro de propriedade
+
+#### `put` `/propriedade/:id`
+
+- **Requisição**  
+  Devera possuir o parametro de rota id com o id da propriedade a ser atualizada.
+
+- **Resposta**  
+  Em caso de **sucesso**, você não recebera um corpo (body) somente o **_status code_** 204.
+  Em caso de **falha no atualizar cadastro**, Você recebera um **_status code_** apropriado, e em seu corpo (body) ira possuir um objeto com uma propriedade **mensagem** que vai possuir como valor um texto explicando o motivo da falha.
+
+- **REQUISITOS OBRIGATÓRIOS**
+  - Devera seguir os mesmos requisitos obrigatorio da rota de cadastro de propriedade
+  - parametro de rota id
+
+### Excluir cadastro de propriedade
+
+#### `delete` `/propriedade/:id`
+
+- **Requisição**
+  Devera possuir o parametro de rota id com o id da propriedade a ser excluida.
+  Não devera possuir corpo (body)
+
+- **Resposta**  
+  Em caso de **sucesso**,você recebera o corpo (body) da resposta com uma mensagem dizendo que o cadastro foi excluido.
+  Em caso de **falha no atualizar cadastro**, Você recebera um **_status code_** apropriado, e em seu corpo (body) ira possuir um objeto com uma propriedade **mensagem** que vai possuir como valor um texto explicando o motivo da falha.
+
+- **REQUISITOS OBRIGATÓRIOS**
+  - O produtor devera está logado
+  - parametro de rota id
+
+### Cadastro de Controle pluviométrico
+
+#### `post` `/controles/pluviometrico`
+
+- **Requisição**  
+  Sem parâmetros de rota ou de query.  
+  O corpo (body) deverá possuir um objeto com as seguintes propriedades (respeitando estes nomes):
+
+  - id_propriedade
+  - data_chuva
+  - volume_de_chuva
+
+- **Resposta**  
+  Em caso de **sucesso**, você recebera o corpo (body) da resposta com o conteúdo da propriedade cadastrada, incluindo seu respectivo `id` e o id\*produtor do produtor logado.
+  Em caso de **falha no cadastro**, Você recebera um **\_status code\*** apropriado, e em seu corpo (body) ira possuir um objeto com uma propriedade **mensagem** que vai possuir como valor um texto explicando o motivo da falha.
+
+- **REQUISITOS OBRIGATÓRIOS**
+  - Campos obrigatórios:
+    - id_propriedade
+    - data_chuva
+    - volume_de_chuva
+  - O produtor deve estar logado no seu cadastro.
+  - a data deve ser no formato americano.
+
+### Atualizar cadastro de Controle pluviométrico
+
+#### `put` `/controles/pluviometrico/:id`
+
+- **Requisição**  
+  Devera possuir o parametro de rota id do cadastro de controle pluviométrico a ser atualizada.
+
+- **Resposta**  
+  Em caso de **sucesso**, você não recebera um corpo (body) somente o **_status code_** 204.
+  Em caso de **falha no atualizar cadastro**, Você recebera um **_status code_** apropriado, e em seu corpo (body) ira possuir um objeto com uma propriedade **mensagem** que vai possuir como valor um texto explicando o motivo da falha.
+
+- **REQUISITOS OBRIGATÓRIOS**
+  - Devera seguir os mesmos requisitos obrigatorio da rota de cadastro de controle pluviométrico
+  - parametro de rota id
+
+### Excluir cadastro de controle pluviométrico
+
+#### `delete` `/controles/pluviometrico/:id`
+
+- **Requisição**
+  Devera possuir o parametro de rota id com o id do controle pluviométrico a ser excluida.
+  Não devera possuir corpo (body)
+
+- **Resposta**  
+  Em caso de **sucesso**,você recebera o corpo (body) da resposta com uma mensagem dizendo que o cadastro foi excluido.
+  Em caso de **falha no atualizar cadastro**, Você recebera um **_status code_** apropriado, e em seu corpo (body) ira possuir um objeto com uma propriedade **mensagem** que vai possuir como valor um texto explicando o motivo da falha.
+
+- **REQUISITOS OBRIGATÓRIOS**
+  - O produtor devera está logado
+  - parametro de rota id
+
+### Cadastro de Controle leiteiro
+
+#### `post` `/controles/leiteiro`
+
+- **Requisição**  
+  Sem parâmetros de rota ou de query.  
+  O corpo (body) deverá possuir um objeto com as seguintes propriedades (respeitando estes nomes):
+
+  - id_propriedade
+  - data
+  - industria
+  - consumo_familiar
+  - consumo_bezerros
+  - descarte
+
+- **Resposta**  
+  Em caso de **sucesso**, você recebera o corpo (body) da resposta com o conteúdo do controle leiteiro cadastrado, incluindo seu respectivo `id` e o id\*produtor do produtor logado.
+  Em caso de **falha no cadastro**, Você recebera um **_status code_** apropriado, e em seu corpo (body) ira possuir um objeto com uma propriedade **mensagem** que vai possuir como valor um texto explicando o motivo da falha.
+
+- **REQUISITOS OBRIGATÓRIOS**
+  - Campos obrigatórios:
+    -id_propriedade
+    -data
+    -industria
+    -consumo_familiar
+    -consumo_bezerros
+    -descarte
+  - O produtor deve estar logado no seu cadastro.
+  - a data deve ser no formato americano.
+
+### Atualizar cadastro de Controle leiteiro
+
+#### `put` `/controles/leiteiro/2`
+
+- **Requisição**  
+  Devera possuir o parametro de rota id do cadastro de controle leiteiro a ser atualizada.
+
+- **Resposta**  
+  Em caso de **sucesso**, você não recebera um corpo (body) somente o **_status code_** 204.
+  Em caso de **falha no atualizar cadastro**, Você recebera um **_status code_** apropriado, e em seu corpo (body) ira possuir um objeto com uma propriedade **mensagem** que vai possuir como valor um texto explicando o motivo da falha.
+
+- **REQUISITOS OBRIGATÓRIOS**
+  - Devera seguir os mesmos requisitos obrigatorio da rota de cadastro de controle leiteiro
+  - parametro de rota id
+
+### Excluir cadastro de Controle leiteiro
+
+#### `delete` `/controles/leiteiro/id`
+
+- **Requisição**
+  Devera possuir o parametro de rota id com o id do controle leiteiro a ser excluida.
+  Não devera possuir corpo (body)
+
+- **Resposta**  
+  Em caso de **sucesso**,você recebera o corpo (body) da resposta com uma mensagem dizendo que o cadastro foi excluido.
+  Em caso de **falha no atualizar cadastro**, Você recebera um **_status code_** apropriado, e em seu corpo (body) ira possuir um objeto com uma propriedade **mensagem** que vai possuir como valor um texto explicando o motivo da falha.
+
+- **REQUISITOS OBRIGATÓRIOS**
+  - O produtor devera está logado
+  - parametro de rota id
 
 Controle de nascimentos
 
