@@ -34,7 +34,7 @@ create table controle_leiteiro (
   consumo_familiar int not null, 
   consumo_bezerros int not null,
   descarte int not null
-  );~~""
+  );
 
 
 create table controle_rebanho (
@@ -51,7 +51,7 @@ create table controle_leiteiro_individual (
   id serial primary key,
   id_produtor integer references produtor(id) not null,
   id_vaca integer references controle_rebanho(id) not null,
-  id_propriedade integer references propriedade(id) not null,""
+  id_propriedade integer references propriedade(id) not null,
   data timestamp not null,
   lote int not null,
   producao_manha int  not null,
@@ -60,7 +60,7 @@ create table controle_leiteiro_individual (
 
 
 create table controle_de_nascimentos (
-  id int not null unique,
+  id int not null,
   nome varchar(30),
   data timestamp not null,
   sexo varchar(1) not null,
@@ -68,7 +68,8 @@ create table controle_de_nascimentos (
   id_mae integer references controle_rebanho(id) not null,
   peso int  not null,
   observacao text,
-  id_propriedade integer references propriedade(id) not null
+  id_produtor integer references produtor(id) not null,
+  id_propriedade integer references propriedade(id) not null,
   );
 
 
