@@ -8,5 +8,5 @@ const validarCorpo = (schemas) => async (req, res, next) => {
 }
 
 module.exports = {
-  validarCorpo,
+  validarCorpo
 }

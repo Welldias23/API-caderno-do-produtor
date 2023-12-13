@@ -1,30 +1,30 @@
-const joi = require('joi')
+const joi = require("joi")
 
 const schemasControleLeiteiro = joi.object({
   id_propriedade: joi.number().integer().required().messages({
-    'any.required': 'O campo id_propriedade é obrigatorio.',
-    'number.base': 'O campo id_propriedade deve ser um número.'
+    "any.required": "O campo id_propriedade é obrigatorio.",
+    "number.base": "O campo id_propriedade deve ser um número."
   }),
   data: joi.date().required().messages({
-    'any.required': 'O campo data é obrigatorio.',
-    'date.base': 'Deve ser uma data valida.'
+    "any.required": "O campo data é obrigatorio.",
+    "date.base": "Deve ser uma data valida."
   }),
   industria: joi.number().required().messages({
-    'any.required': 'O campo industria é obrigatorio.',
-    'number.base': 'O campo industria percisa ser um número.',
+    "any.required": "O campo industria é obrigatorio.",
+    "number.base": "O campo industria percisa ser um número."
   }),
   consumo_familiar: joi.number().required().messages({
-    'any.required': 'O campo consumo_familiar é obrigatorio.',
-    'number.base': 'O campo consumo_familiar percisa ser um número.',
+    "any.required": "O campo consumo_familiar é obrigatorio.",
+    "number.base": "O campo consumo_familiar percisa ser um número."
   }),
   consumo_bezerros: joi.number().required().messages({
-    'any.required': 'O campo consumo_bezerros é obrigatorio.',
-    'number.base': 'O campo consumo_bezerros percisa ser um número.',
+    "any.required": "O campo consumo_bezerros é obrigatorio.",
+    "number.base": "O campo consumo_bezerros percisa ser um número."
   }),
   descarte: joi.number().required().messages({
-    'any.required': 'O campo descarte é obrigatorio.',
-    'number.base': 'O campo descarte percisa ser um número.',
-  }),
+    "any.required": "O campo descarte é obrigatorio.",
+    "number.base": "O campo descarte percisa ser um número."
+  })
 })
 
 module.exports = {

@@ -1,6 +1,6 @@
 const validarCpf = (cpf) => {
   let n1 = 10
-  const array1 =[]
+  const array1 = []
   for (let i = 0; i <= 8; i++) {
     let numeroAtual = Number(cpf[i]) * n1
     array1.push(numeroAtual)
@@ -20,7 +20,7 @@ const validarCpf = (cpf) => {
   }
 
   let n2 = 11
-  const array2 =[]
+  const array2 = []
   for (let i = 0; i <= 9; i++) {
     let numeroAtual = Number(cpf[i]) * n2
     array2.push(numeroAtual)
@@ -38,8 +38,11 @@ const validarCpf = (cpf) => {
   } else {
     numeroVerificador2 = 0
   }
-  
-  if (Number(cpf[9]) === numeroVerificador1 && Number(cpf[10]) === numeroVerificador2) {
+
+  if (
+    Number(cpf[9]) === numeroVerificador1 &&
+    Number(cpf[10]) === numeroVerificador2
+  ) {
     return true
   } else {
     return false

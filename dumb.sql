@@ -38,11 +38,16 @@ create table controle_leiteiro (
 
 
 create table controle_rebanho (
-  id int not null,
+  id serial primary key,
+  id_animal int not null,
   nome varchar(30),
-  data timestamp not null,
+  data_nascimento timestamp,
   sexo varchar(1) not null,
+  id_pai int,
+  id_mae int,
   peso int  not null,
+  observacao text,
+  id_produtor integer references produtor(id) not null,
   id_propriedade integer references propriedade(id) not null
   );
 
@@ -59,26 +64,30 @@ create table controle_leiteiro_individual (
   );
 
 
-create table controle_de_nascimentos (
-  id int not null,
+create table controle_nascimentos (
+  id serial primary key,
+  id_animal int not null,
   nome varchar(30),
-  data timestamp not null,
+  data_nascimento timestamp not null,
   sexo varchar(1) not null,
-  id_pai integer references controle_rebanho(id) not null,
+  id_pai int,
   id_mae integer references controle_rebanho(id) not null,
   peso int  not null,
   observacao text,
   id_produtor integer references produtor(id) not null,
-  id_propriedade integer references propriedade(id) not null,
+  id_propriedade integer references propriedade(id) not null
   );
 
+
+alter table controle_rebanho 
+add column id_nascimento integer references controle_nascimentos(id) unique;
 
 create table controle_reprodutivo (
   id_animal integer references controle_rebanho(id) not null,
   nome varchar(30),
   data_hora_do_cio timestamp not null,
   data_hora_da_inseminacao_monta timestamp not null,
-  id_touro integer references controle_rebanho(id) not null,
+  nome_touro varchar(30) not null,
   inseminador varchar(30) not null,
   prenhe varchar(10),
   previsao_de_parto timestamp,
