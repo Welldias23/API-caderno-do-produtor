@@ -83,6 +83,7 @@ alter table controle_rebanho
 add column id_nascimento integer references controle_nascimentos(id) unique;
 
 create table controle_reprodutivo (
+  id serial primary key,
   id_animal integer references controle_rebanho(id) not null,
   nome varchar(30),
   data_hora_do_cio timestamp not null,
@@ -92,6 +93,7 @@ create table controle_reprodutivo (
   prenhe varchar(10),
   previsao_de_parto timestamp,
   observacao text,
+  id_produtor integer references produtor(id) not null,
   id_propriedade integer references propriedade(id) not null
   );
 
