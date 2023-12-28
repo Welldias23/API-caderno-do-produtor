@@ -8,6 +8,7 @@ const rotasControleLeiteiro = require("./routes/controleLeiteiro")
 const rotasControleLeiteiroIndividual = require("./routes/controleLeiteiroIndividual")
 const rotasControleNascimentos = require("./routes/controleNascimentos")
 const rotasControleReprodutivo = require("./routes/controleReprodutivo")
+const rotasControleSecagens = require("./routes/controleSecagens")
 
 const PORTA = process.env.PORT || 3000
 
@@ -23,5 +24,6 @@ app.use(rotasControleLeiteiro)
 app.use(rotasControleLeiteiroIndividual)
 app.use(rotasControleNascimentos)
 app.use(rotasControleReprodutivo)
+app.use(rotasControleSecagens)
 
 app.listen(PORTA)
